@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  ZipLine
+//  zipline
 //
 //  Created by Adam Nemecek on 5/18/16.
 //  Copyright © 2016 Adam Nemecek. All rights reserved.
