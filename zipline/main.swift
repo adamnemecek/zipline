@@ -21,16 +21,10 @@ func *(string: String, factor: Int) -> String {
   return [String](count: factor, repeatedValue: string).reduce("", combine: +)
 }
 
-func input() -> String {
-  let keyboard = NSFileHandle.fileHandleWithStandardInput()
-  let inputData = keyboard.availableData
-  return NSString(data: inputData, encoding:NSUTF8StringEncoding) as! String
-}
-
 extension String {
   func trim() -> String {
     return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-      .stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
+          .stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
   }
 }
 
@@ -80,23 +74,12 @@ struct ZipLine: CollectionType {
     return NSString.pathWithComponents(pathComponents) as String
   }
 
-  func displayGen() -> AnyGenerator<(Int, String, Bool)> {
-    var g = generate()
-    var choice = lastIndex
-
-    return AnyGenerator {
-      defer {
-        choice -= 1
-      }
-
-      return g.next().map {
-        (choice, $0, NSFileManager.gitAtPath($0))
-      }
-    }
+  func segments() -> [(Int, String, Bool)] {
+    return enumerate().map { (lastIndex - $0, $1, NSFileManager.gitAtPath($1)) }
   }
 
   func displayPaths() {
-    for (idx, (choice, path, git)) in displayGen().enumerate() {
+    for (idx, (choice, path, git)) in segments().enumerate() {
       let spaceString = " " * idx
       var s = "\(spaceString) \(choice): \(path)"
       if git {
@@ -109,8 +92,8 @@ struct ZipLine: CollectionType {
   func getLevel() -> Int? {
     printErr("Zipline to [\(startIndex)-\(lastIndex)]: ", newLine: false)
 
-    let i = input().trim()
-    if let input = Int(i) where indices.contains(input) {
+    let i = readLine(stripNewline: true)?.trim()
+    if let i = i, input = Int(i) where indices.contains(input) {
       return lastIndex - input
     }
 

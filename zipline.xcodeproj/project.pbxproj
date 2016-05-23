@@ -25,7 +25,6 @@
 /* Begin PBXFileReference section */
 		37C3A1321CED5469007679C8 /* zipline */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = zipline; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C3A1351CED5469007679C8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		37E101591CEFA243001FE209 /* zl.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = zl.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				37C3A1351CED5469007679C8 /* main.swift */,
-				37E101591CEFA243001FE209 /* zl.sh */,
 			);
 			name = zipline;
 			path = ZipLine;
