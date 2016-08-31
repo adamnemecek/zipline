@@ -1,5 +1,5 @@
 #!/bin/bash
 
 function zl {
-  cd `zipline`
+  cd "${zipline}"
 }
